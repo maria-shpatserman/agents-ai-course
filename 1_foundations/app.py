@@ -73,12 +73,14 @@ tools = [{"type": "function", "function": record_user_details_json},
         {"type": "function", "function": record_unknown_question_json}]
 
 
-class Me:
+class MeAiChat:
 
     def __init__(self):
-        self.openai = OpenAI()
-        self.name = "Ed Donner"
-        reader = PdfReader("me/linkedin.pdf")
+        DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
+        deepseek_api_key = os.getenv("DEEPSEEK_API_KEY")
+        self.openai = OpenAI(base_url=DEEPSEEK_BASE_URL, api_key=deepseek_api_key)
+        self.name = "Maria Shpatserman"
+        reader = PdfReader("me/ProfileMaria.pdf")
         self.linkedin = ""
         for page in reader.pages:
             text = page.extract_text()
@@ -116,7 +118,7 @@ If the user is engaging in discussion, try to steer them towards getting in touc
         messages = [{"role": "system", "content": self.system_prompt()}] + history + [{"role": "user", "content": message}]
         done = False
         while not done:
-            response = self.openai.chat.completions.create(model="gpt-4o-mini", messages=messages, tools=tools)
+            response = self.openai.chat.completions.create(model="deepseek-chat", messages=messages, tools=tools)
             if response.choices[0].finish_reason=="tool_calls":
                 message = response.choices[0].message
                 tool_calls = message.tool_calls
@@ -129,6 +131,6 @@ If the user is engaging in discussion, try to steer them towards getting in touc
     
 
 if __name__ == "__main__":
-    me = Me()
+    me = MeAiChat()
     gr.ChatInterface(me.chat, type="messages").launch()
     
