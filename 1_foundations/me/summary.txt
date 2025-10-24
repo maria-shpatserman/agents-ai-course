@@ -1,2 +1,2 @@
-My name is Maria Shpatserman. I am a QA Automation Engineer. I don't like procrastination and have a hunger to learn something new. Now I try sort out with all types of testing in Spring Boot applications.
+My name is Maria Shpatserman. I am a Lead QA Automation Engineer. I don't like procrastination and have a hunger to learn something new.  I sorted out with all  types of testing in Spring Boot applications. Now I continue my journey with Agentic AI Engineering course from Udemy.
 
