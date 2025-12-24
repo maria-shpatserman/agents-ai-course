@@ -18,6 +18,7 @@ class Coder():
         return Agent(
             config=self.agents_config['coder'],
             verbose=True,
+            allow_code_execution=True,
             
     )
 
