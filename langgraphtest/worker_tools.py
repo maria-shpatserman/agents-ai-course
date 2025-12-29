@@ -1,8 +1,4 @@
-from playwright.async_api import async_playwright
-from langchain_community.agent_toolkits import PlayWrightBrowserToolkit
 from dotenv import load_dotenv
-import os
-import requests
 from langchain.agents import Tool
 from langchain_community.agent_toolkits import FileManagementToolkit
 from langchain_community.tools.wikipedia.tool import WikipediaQueryRun
@@ -14,14 +10,6 @@ from langchain_community.utilities.wikipedia import WikipediaAPIWrapper
 
 load_dotenv(override=True)
 serper = GoogleSerperAPIWrapper()
-
-async def playwright_tools():
-    playwright = await async_playwright().start()
-    browser = await playwright.chromium.launch(headless=False)
-    toolkit = PlayWrightBrowserToolkit.from_browser(async_browser=browser)
-    return toolkit.get_tools(), browser, playwright
-
-
 
 
 def get_file_tools():
