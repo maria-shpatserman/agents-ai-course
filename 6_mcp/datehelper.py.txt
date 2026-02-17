@@ -1,0 +1,6 @@
+from datetime import datetime
+from pydantic import BaseModel
+class DateHelper(BaseModel):
+   
+    def get(self) -> str:
+        return datetime.today().strftime('%Y-%m-%d')
